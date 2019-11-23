@@ -1,0 +1,2 @@
+module RateroomHelper
+end

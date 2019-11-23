@@ -1,0 +1,25 @@
+<div class="ui centered card">
+  <div class="content">
+    <div class="right floated meta"><%= time_ago_in_words(banana.created_at) %>
+    <% if banana.user == current_user %>
+      <%= link_to '<i class="trash icon"></i>'.html_safe, "banana/remove/#{banana.id}",  method: :delete, data: {confirm: "Are you sure?"} %>
+    <% end %>
+    </div>
+    <%= banana.user.username %>  
+    <% if banana.flagged %>
+      <div class="ui red horizontal label">This image has been flagged as inappropriate</div>
+    <% end %>  
+  </div>
+  <div class="image">
+    <%= image_tag(banana.image, style:'width:100%') %>
+  </div>
+  <div class="content">
+    <span class="right floated">
+      <%= link_to "<i class=\"thumbs up #{banana.rated(current_user.id) ? (banana.ratedRipeByUser(current_user.id) ? '' : 'outline') : 'outline'} icon\"></i>#{banana.ripe} ripe".html_safe, "/banana/ripe/#{banana.id}", method: :post %>
+    </span>
+  <%= link_to "<i class=\"thumbs down #{banana.rated(current_user.id) ? (banana.ratedRipeByUser(current_user.id) ? 'outline' : '') : 'outline'} icon\"></i>#{banana.notripe} note ripe".html_safe, "/banana/notripe/#{banana.id}", method: :post %>
+  </div>  
+  <div class="extra content">
+    <%= link_to '<i class="exclamation circle icon"></i> report'.html_safe, "/banana/flag/#{banana.id}", method: :post, data: {confirm: "Are you sure you want to flag this as inappropriate?"}  %>
+  </div>
+</div>

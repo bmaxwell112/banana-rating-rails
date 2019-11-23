@@ -1,8 +1,10 @@
 <div class="ui centered card">
   <div class="content">
     <div class="right floated meta"><%= time_ago_in_words(banana.created_at) %>
-    <% if banana.user == current_user %>
-      <%= link_to '<i class="trash icon"></i>'.html_safe, "banana/remove/#{banana.id}",  method: :delete, data: {confirm: "Are you sure?"} %>
+    <% if logged_in? %>
+      <% if banana.user == current_user %>
+        <%= link_to '<i class="trash icon"></i>'.html_safe, "banana/remove/#{banana.id}",  method: :delete, data: {confirm: "Are you sure?"} %>
+      <% end %>
     <% end %>
     </div>
     <%= banana.user.username %>  

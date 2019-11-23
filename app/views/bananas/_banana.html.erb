@@ -21,14 +21,14 @@
         <%= link_to "<i class=\"thumbs up #{banana.rated(current_user.id) ? (banana.ratedRipeByUser(current_user.id) ? '' : 'outline') : 'outline'} icon\"></i>#{banana.ripe} ripe".html_safe, "/banana/ripe/#{banana.id}", method: :post %>
       <% else %>
         <i class="thumbs up outline icon"></i>
-        <% banana.ripe %> ripe
+        <%= banana.ripe %> ripe
       <% end %>
     </span>
   <% if logged_in? %>
     <%= link_to "<i class=\"thumbs down #{banana.rated(current_user.id) ? (banana.ratedRipeByUser(current_user.id) ? 'outline' : '') : 'outline'} icon\"></i>#{banana.notripe} note ripe".html_safe, "/banana/notripe/#{banana.id}", method: :post %>
   <% else %>
         <i class="thumbs down outline icon"></i>
-        <% banana.notripe %> not ripe
+        <%= banana.notripe %> not ripe
       <% end %>
   </div>  
   <div class="extra content">
